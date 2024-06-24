@@ -138,5 +138,42 @@ System.out.println("Max no of employees present in Dept :: " + maxNoOfEmployeesI
 ```
 ##
 
+**13. Find if there any employees from HR Department.**
+```java
+Optional<Employee> emp = empList.stream().filter(e -> e.getDeptName().equalsIgnoreCase("HR"))
+                         .findAny();
+emp.ifPresent(employee -> System.out.println("Found employees from HR department " + employee));
+```
+##
+
+**14. Find the department names that these employees work for, where the number of employees in the department is over 3.**
+```java
+System.out.println("Department names where the number of employees in the department is over 3 :: ");
+empList.stream().collect(Collectors.groupingBy(Employee::getDeptName, Collectors.counting())).
+entrySet().stream().filter(entry -> entry.getValue() > 3).forEach(System.out::println);
+```
+##
+
+
+**15.Find distinct department names that employees work for.**
+```java
+System.out.println("Distinct department names that employees work for:: ");
+ empList.stream().map(Employee::getDeptName).distinct().
+ forEach(System.out::println);
+```
+##
+
+
+
+**16.Find all employees who lives in ‘Blore’ city, sort them by their name and print the names of employees.*
+```java
+empList.stream().filter(e -> e.getCity().equalsIgnoreCase("Blore"))
+.sorted(Comparator.comparing(Employee::getName))
+.forEach(e -> System.out.println("Employees staying in Blore:: " + e.getName()));
+```
+##
+
+
+
 
 
