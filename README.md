@@ -310,18 +310,20 @@ System.out.println("Highest second salary dept wise:: \n" + empList.stream().col
 ##
 
 
-**33. Sort the employees salary in each department in ascending order.**
+**34. Sort the employees salary in each department in descending order**
 ```java
-System.out.println("Sorting the department wise employee salary in ascending order:: ");
-Map<String, Stream<Employee>> sortedEmployeeAsc = empList.stream().collect(Collectors.groupingBy(Employee::getDeptName, 
-                                                   Collectors.collectingAndThen(Collectors.toList(),
-                                                   list -> list.stream().sorted(Comparator.comparingDouble(Employee::getSalary)))));
-sortedEmployeeAsc.forEach((k,v)->{
+System.out.println("Sorting the department wise employee salary in descending order ");
+        Map<String, Stream<Employee>> sortedEmployeeDesc = empList.stream().collect(Collectors.groupingBy(Employee::getDeptName, 
+                                                            Collectors.collectingAndThen(Collectors.toList(),
+                                                            list -> list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()))));
+sortedEmployeeDesc.forEach((k,v)->{
             System.out.println(k);
             System.out.println(v.collect(Collectors.toList()));
         });
 ```
 ##
+
+
 
 
 
