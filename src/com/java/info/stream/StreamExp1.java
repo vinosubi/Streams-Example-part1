@@ -167,7 +167,7 @@ public class StreamExp1 {
        // 20. Sorting a Stream by age and name fields.
 
         //Method 1
-        System.out.println("Sorting based on name and age:: ");//
+        System.out.println("Sorting based on name and age:: ");
        Comparator<Employee> comparator1 = Comparator.comparingInt(Employee::getAge);
        Comparator<Employee> comparator2 = Comparator.comparing(Employee::getName);
        empList.stream().sorted(comparator1.thenComparing(comparator2)).forEach(System.out::println);
