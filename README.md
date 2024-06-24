@@ -165,13 +165,72 @@ System.out.println("Distinct department names that employees work for:: ");
 
 
 
-**16.Find all employees who lives in ‘Blore’ city, sort them by their name and print the names of employees.*
+**16.Find all employees who lives in ‘Blore’ city, sort them by their name and print the names of employees.**
 ```java
 empList.stream().filter(e -> e.getCity().equalsIgnoreCase("Blore"))
 .sorted(Comparator.comparing(Employee::getName))
 .forEach(e -> System.out.println("Employees staying in Blore:: " + e.getName()));
 ```
 ##
+
+
+**17. No of employees in the organisation.**
+```java
+System.out.println("No of employees in the organisation :: " + empList.stream().count());
+
+```
+##
+
+
+**18. Find employee count in every department**
+```java
+Map<String, Long> employeeCountInDepartmentMap = empList.stream().collect(Collectors.
+                                                 groupingBy(Employee::getDeptName, Collectors.counting()));
+ System.out.print("Employee department and its count :- \n"
+                + employeeCountInDepartmentMap);
+
+```
+##
+
+
+**19. Find the department which has the highest number of employees.**
+```java
+Optional<Map.Entry<String, Long>> deptNameWithHighestEmp = employeeCountInDepartmentMap.entrySet().stream().max(Map.Entry.comparingByValue());
+if (deptNameWithHighestEmp.isPresent()) {
+    System.out.println("Department which has the highest number of employees " + deptNameWithHighestEmp.get());
+}
+
+```
+##
+
+**20. Sorting a Stream by age and name fields.**
+```java
+System.out.println("Sorting based on name and age:: ");
+Comparator<Employee> comparator1 = Comparator.comparing(Employee::getName);
+Comparator<Employee> comparator2 = Comparator.comparingInt(Employee::getAge);
+empList.stream().sorted(comparator1.thenComparing(comparator2)).forEach(System.out::println);
+```
+##
+
+
+**21. Highest experienced employees in the organization..**
+```java
+Optional<Employee> seniorEmp = empList.stream().sorted(Comparator
+                               .comparingInt(Employee::getYearOfJoining)).findFirst();
+System.out.println("Senior Employee Details :" + seniorEmp.get());
+```
+##
+
+**22. Print average and total salary of the organization.**
+```java
+DoubleSummaryStatistics empSalary = empList.stream().collect(Collectors
+                                    .summarizingDouble(Employee::getSalary));
+System.out.println("Average Salary in the organisation = " + empSalary.getAverage());
+System.out.println("Total Salary in the organisation  = " + empSalary.getSum());
+```
+##
+
+
 
 
 
