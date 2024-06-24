@@ -22,7 +22,7 @@ empByCity = empList.stream().collect(Collectors.groupingBy(Employee::getCity));
 System.out.println("Employees grouped by city :: \n" + empByCity);
 ```
 ##
-**2. Group the Employees by age..**
+**2. Group the Employees by age.**
 
 ```java
 Map<Integer, List<Employee>> empByAge = empList.stream().collect(Collectors.
@@ -31,7 +31,7 @@ System.out.println("Employees grouped by age :: \n" + empByAge);
 ```
 
 ##
-**3. Find the count of male and female employees present in the organization...**
+**3. Find the count of male and female employees present in the organization.**
 
 ```java
 Map<String, Long> noOfMaleAndFemaleEmployees = empList.stream()
@@ -41,4 +41,65 @@ System.out.println("Count of male and female employees present in the
                     organization:: \n" + noOfMaleAndFemaleEmployees);
 ```
 ##
+
+**4. Print the names of all departments in the organization.**
+
+```java
+System.out.println("Names of all departments in the organization ");
+empList.stream().map(Employee::getDeptName).distinct().
+forEach(System.out::println);
+```
+##
+
+**5. Print employee details whose age is greater than 28.**
+
+```java
+System.out.println("Employee details whose age is greater than 28");
+empList.stream().filter(e -> e.getAge() > 28).collect(Collectors.toList()).
+forEach(System.out::println);
+```
+##
+
+**6. Find maximum age of employee.**
+
+```java
+OptionalInt max = empList.stream().mapToInt(Employee::getAge).max();
+if (max.isPresent()) 
+System.out.println("Maximum age of Employee: " + max.getAsInt());
+```
+##
+
+**7. Print Average age of Male and Female Employees.**
+
+```java
+Map<String, Double> avgAge = empList.stream().collect(Collectors.groupingBy
+                             (Employee::getGender,Collectors.averagingInt
+                              Employee::getAge)));
+System.out.println("Average age of Male and Female Employees:: " + avgAge);
+```
+##
+
+**8. Print the number of employees in each department.**
+
+```java
+Map<String, Long> countByDept = empList.stream().collect(Collectors.groupingBy
+                        (Employee::getDeptName,Collectors.counting()));
+System.out.println("No of employees in each department");
+for(Map.Entry<String, Long> entry : countByDept.entrySet()) 
+{
+   System.out.println(entry.getKey() + " : " + entry.getValue());
+}
+```
+##
+
+**9. Find oldest employee.**
+
+```java
+Optional<Employee> oldestEmp = empList.stream().max(Comparator.comparingInt(Employee::getAge));
+Employee oldestEmployee = oldestEmp.get();
+System.out.println("Oldest employee details:: \n" + oldestEmployee);
+```
+##
+
+
 
