@@ -101,5 +101,42 @@ System.out.println("Oldest employee details:: \n" + oldestEmployee);
 ```
 ##
 
+**10. Find youngest female employee.**
+
+```java
+//can use anyMatch also
+Optional<Employee> youngestEmp = empList.stream().filter(e -> e.getGender() == "F")
+                                  .min(Comparator.comparingInt(Employee::getAge));
+Employee youngestEmployee = youngestEmp.get();
+System.out.println("Youngest Female employee details:: \n" + youngestEmployee);
+```
+##
+
+**11. Find employees whose age is greater than 30 and less than 30.**
+
+```java
+System.out.println("Employees whose age is greater than 25 and less than 25");
+Map<Boolean, List<Employee>> partitionEmployeesByAge =
+                empList.stream().collect(Collectors.partitioningBy(e -> e.getAge() > 30));
+
+Set<Map.Entry<Boolean, List<Employee>>> empSet = partitionEmployeesByAge.entrySet();
+for (Map.Entry<Boolean, List<Employee>> entry : empSet) {
+  if (Boolean.TRUE.equals(entry.getKey())) {
+                System.out.println("Employees greater than 30 years ::" + entry.getValue());
+            } else {
+                System.out.println("Employees less than 30 years ::" + entry.getValue());
+            }
+        }
+```
+##
+
+**12. Find the department name which has the highest number of employees.**
+```java
+Map.Entry<String, Long> maxNoOfEmployeesInDept = empList.stream().collect(Collectors.groupingBy(Employee::getDeptName, Collectors.counting())).
+                                                 entrySet().stream().max(Map.Entry.comparingByValue()).get();
+System.out.println("Max no of employees present in Dept :: " + maxNoOfEmployeesInDept.getKey());
+```
+##
+
 
 
