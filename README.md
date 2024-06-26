@@ -342,7 +342,7 @@ It creates a Collector that calculates the max element according to a given Comp
 There is no guarantee that the max element will be found (if a stream is empty, for example), so the operation returns result wrapped by an Optional object.
 
 
--**Collectors.minBy() collector**
+**Collectors.minBy() collector**
 
 The signature of Collectors.maxBy() factory method looks as follows:
 
