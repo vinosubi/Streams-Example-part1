@@ -344,11 +344,11 @@ There is no guarantee that the max element will be found (if a stream is empty, 
 
 **Collectors.minBy() collector**
 
-The signature of Collectors.maxBy() factory method looks as follows:
+The signature of Collectors.minBy() factory method looks as follows:
 
-Collector<T, ?, Optional<T>> maxBy​(Comparator<T> comparator)
+Collector<T, ?, Optional<T>> minBy​(Comparator<T> comparator)
 
-It creates a Collector that calculates the max element according to a given Comparator, described as an Optional.
+It creates a Collector that calculates the min element according to a given Comparator, described as an Optional.
 
 ##
 
