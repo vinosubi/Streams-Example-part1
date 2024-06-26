@@ -277,5 +277,15 @@ public class StreamExp1 {
             System.out.println(k);
             System.out.println(v.collect(Collectors.toList()));
         });
+
+        // 35. Find the highest salary employee for each department
+        Map<String, Optional<Employee>> highestPaidEmployees = empList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
+
+        highestPaidEmployees.forEach((department, employee) ->
+                System.out.println("Department: " + department + ", Highest Paid Employee: " + employee.get()));
+
+
     }
 }
