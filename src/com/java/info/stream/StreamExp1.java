@@ -214,7 +214,7 @@ public class StreamExp1 {
 
         //26.Nth Highest salary.
         int n = 10;// this can be any nth number highest salary
-        Optional<Employee> emp2 = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary)
+        Optional<Employee> emp3 = empList.stream().sorted(Comparator.comparingDouble(Employee::getSalary)
                 .reversed()).skip(n-1).findFirst();
         System.out.println("Second Highest Salary in the organisation : " + emp2.get().getSalary());
 
@@ -280,8 +280,8 @@ public class StreamExp1 {
 
         // 35. Find the highest salary employee for each department
         Map<String, Optional<Employee>> highestPaidEmployees = empList.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment,
-                        Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
+                .collect(Collectors.groupingBy(Employee::getDeptName,
+                        Collectors.maxBy(Comparator.comparingLong(Employee::getSalary))));
 
         highestPaidEmployees.forEach((department, employee) ->
                 System.out.println("Department: " + department + ", Highest Paid Employee: " + employee.get()));
