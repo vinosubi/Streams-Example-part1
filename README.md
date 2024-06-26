@@ -323,6 +323,32 @@ sortedEmployeeDesc.forEach((k,v)->{
 ```
 ##
 
+**Find the highest salary employee for each department.**
+```java
+ Map<String, Optional<Employee>> highestPaidEmployees = empList.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment,
+                        Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
+
+        highestPaidEmployees.forEach((department, employee) ->
+                System.out.println("Department: " + department + ", Highest Paid Employee: " + employee.get()));
+```
+
+**Collectors.maxBy() collector**
+The signature of Collectors.maxBy() factory method looks as follows:
+
+Collector<T, ?, Optional<T>> maxBy​(Comparator<T> comparator)
+
+It creates a Collector that calculates the max element according to a given Comparator, described as an Optional.
+There is no guarantee that the max element will be found (if a stream is empty, for example), so the operation returns result wrapped by an Optional object.
+
+**Collectors.minBy() collector**
+The signature of Collectors.maxBy() factory method looks as follows:
+
+Collector<T, ?, Optional<T>> maxBy​(Comparator<T> comparator)
+
+It creates a Collector that calculates the max element according to a given Comparator, described as an Optional.
+##
+
 
 
 
