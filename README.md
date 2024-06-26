@@ -325,9 +325,9 @@ sortedEmployeeDesc.forEach((k,v)->{
 
 **Find the highest salary employee for each department.**
 ```java
- Map<String, Optional<Employee>> highestPaidEmployees = empList.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment,
-                        Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
+        Map<String, Optional<Employee>> highestPaidEmployees = empList.stream()
+                .collect(Collectors.groupingBy(Employee::getDeptName,
+                        Collectors.maxBy(Comparator.comparingLong(Employee::getSalary))));
 
         highestPaidEmployees.forEach((department, employee) ->
                 System.out.println("Department: " + department + ", Highest Paid Employee: " + employee.get()));
