@@ -347,6 +347,14 @@ The signature of Collectors.maxBy() factory method looks as follows:
 Collector<T, ?, Optional<T>> maxBy​(Comparator<T> comparator)
 
 It creates a Collector that calculates the max element according to a given Comparator, described as an Optional.
+
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
 ##
 
 
